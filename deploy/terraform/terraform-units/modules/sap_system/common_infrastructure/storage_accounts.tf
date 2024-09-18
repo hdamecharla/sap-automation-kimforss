@@ -34,12 +34,13 @@ resource "azurerm_storage_account" "sapmnt" {
   account_tier                         = "Premium"
   account_replication_type             = "ZRS"
   account_kind                         = "FileStorage"
-  enable_https_traffic_only            = false
+  https_traffic_only_enabled            = false
   min_tls_version                      = "TLS1_2"
   allow_nested_items_to_be_public      = false
   cross_tenant_replication_enabled     = false
 
   public_network_access_enabled        = try(var.landscape_tfstate.public_network_access_enabled, true)
+  shared_access_key_enabled            = false
   tags                                 = var.tags
 
   network_rules {
